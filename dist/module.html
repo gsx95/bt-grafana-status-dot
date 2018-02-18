@@ -1,5 +1,23 @@
 <div style="display: inline-block" ng-repeat="dot in ctrl.dots">
   <a ng-href="{{dot.link.href}}" target="{{dot.link.target}}" bs-tooltip="dot.tooltip" data-placement="bottom">
-    <div style="margin: 5px; border-radius: 100%" ng-style="dot.style"/>
+    <div style="margin: 5px; border-radius: 100%" ng-style="dot.style">
+		<div class="textcontainer"><h3 class="value" ng-style="dot.style2">{{dot.title}}</h3>
+		</div>
+	</div>
   </a>
 </div>
+
+<style>
+	.textcontainer{
+		margin-left: auto;
+		margin-right: auto;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.value{
+		width: 100%;
+		text-align: center;
+	}
+</style>

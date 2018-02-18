@@ -32,8 +32,19 @@ var Presenter = exports.Presenter = function () {
         return dot.color = _this._color(dot.colorValue);
       });
       dots.forEach(function (dot) {
+        return dot.textColor = _this._textColor(dot.colorValue);
+      });
+      dots.forEach(function (dot) {
         return dot.tooltip = _this._tooltip(dot);
       });
+      dots.forEach(function (dot) {
+        return dot.title = _this._title(dot);
+      });
+    }
+  }, {
+    key: '_title',
+    value: function _title(dot) {
+      return dot.displayValue;
     }
   }, {
     key: '_tooltip',
@@ -41,8 +52,8 @@ var Presenter = exports.Presenter = function () {
       return dot.name + '<br>' + this._format(dot.displayValue);
     }
   }, {
-    key: '_color',
-    value: function _color(value) {
+    key: '_textColor',
+    value: function _textColor(value) {
       var _this2 = this;
 
       var ts = _lodash2.default.sortBy(this.panel.thresholds, function (t) {
@@ -50,6 +61,19 @@ var Presenter = exports.Presenter = function () {
       });
       var threshold = _lodash2.default.find(_lodash2.default.reverse(ts), function (t) {
         return value >= _this2._value(t);
+      });
+      return threshold ? threshold.textColor : this.panel.defaultTextColor;
+    }
+  }, {
+    key: '_color',
+    value: function _color(value) {
+      var _this3 = this;
+
+      var ts = _lodash2.default.sortBy(this.panel.thresholds, function (t) {
+        return _this3._value(t);
+      });
+      var threshold = _lodash2.default.find(_lodash2.default.reverse(ts), function (t) {
+        return value >= _this3._value(t);
       });
       return threshold ? threshold.color : this.panel.defaultColor;
     }

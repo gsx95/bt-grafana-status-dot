@@ -19,6 +19,7 @@ var Styler = exports.Styler = function () {
     key: 'call',
     value: function call(dots) {
       dots.forEach(this._style.bind(this));
+      dots.forEach(this._style2.bind(this));
     }
   }, {
     key: '_style',
@@ -27,6 +28,12 @@ var Styler = exports.Styler = function () {
       dot.style['background'] = dot.color;
       dot.style['width'] = this.panel.radius;
       dot.style['height'] = this.panel.radius;
+    }
+  }, {
+    key: '_style2',
+    value: function _style2(dot) {
+      dot.style2 = {};
+      dot.style2['color'] = dot.textColor;
     }
   }]);
 
