@@ -5,7 +5,7 @@ export class Styler {
 
   call (dots) {
     dots.forEach(this._style.bind(this))
-    dots.forEach(this._style2.bind(this))
+    dots.forEach(this._titleStyle.bind(this))
   }
 
   _style (dot) {
@@ -15,8 +15,8 @@ export class Styler {
     dot.style['height'] = this.panel.radius
   }
 
-  _style2 (dot) {
-    dot.style2 = { }
-    dot.style2['color'] = dot.textColor
+  _titleStyle (dot) {
+    dot.titleStyle = { }
+    dot.titleStyle['color'] = dot.textColor
   }
 }

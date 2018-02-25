@@ -36,11 +36,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var panelDefaults = {
   radius: '20px',
   defaultColor: 'rgb(117, 117, 117)',
+  defaultTextColor: 'rgb(0, 0, 0)',
   thresholds: [],
   linkIndex: '0',
   linkVars: [],
   format: 'none',
   decimals: 2,
+  showValueInDot: false,
   mathScratchPad: 'data = size(data)[1] == 0 ? [NaN] : data',
   mathDisplayValue: 'data[end]',
   mathColorValue: 'data[end]'
@@ -59,6 +61,7 @@ var PanelCtrl = exports.PanelCtrl = function (_MetricsPanelCtrl) {
     _this.events.on('init-edit-mode', _this.onInitEditMode.bind(_this));
     _this.events.on('data-received', _this.onDataReceived.bind(_this));
     _this.events.on('render', _this.onRender.bind(_this));
+    _this.events.on('data-snapshot-load', _this.onDataSnapshotLoad.bind(_this));
 
     _this.builder = new _builder.Builder(_this.panel);
     _this.presenter = new _presenter.Presenter(_this.panel, _kbn2.default);
@@ -84,10 +87,16 @@ var PanelCtrl = exports.PanelCtrl = function (_MetricsPanelCtrl) {
   }, {
     key: 'onRender',
     value: function onRender() {
-      this.dots = this.builder.call(this.seriesList);
-      this.presenter.call(this.dots);
+      var dotsObject = this.builder.call(this.seriesList);
+      this.presenter.call(dotsObject);
+      this.dots = dotsObject.dots;
       this.linker.call(this.dots);
       this.styler.call(this.dots);
+    }
+  }, {
+    key: 'onDataSnapshotLoad',
+    value: function onDataSnapshotLoad(snapshotData) {
+      this.onDataReceived(snapshotData);
     }
   }, {
     key: 'onEditorSetFormat',

@@ -1,19 +1,19 @@
 {
   "type": "panel",
-  "name": "Status Dot",
-  "id": "btplc-status-dot-panel",
+  "name": "Status Dot Plus",
+  "id": "gsx95-dot-plus-panel",
 
   "info": {
     "version": "0.2.3",
-    "description": "Dot panel showing status across series",
+    "description": "Dot panel showing status across series plus various options.",
     "author": {
-      "name": "BT Plc",
-      "url": "https://bt.com"
+      "name": "gsx95",
+      "url": "schwarz-ge.org"
     },
     "keywords": ["status", "dot", "panel"],
     "links": [
-      {"name": "MIT Licence", "url": "https://github.com/BT-OpenSource/bt-grafana-status-dot/blob/master/LICENSE"},
-      {"name": "Project Site", "url": "https://github.com/BT-OpenSource/bt-grafana-status-dot"}
+      {"name": "MIT Licence", "url": "https://github.com/gsx95/gsx-dot-plus-panel/blob/master/LICENSE"},
+      {"name": "Project Site", "url": "https://github.com/gsx95/gsx-dot-plus-panel"}
     ],
     "screenshots": [
       {"name": "Status Dot", "path": "img/status_dot.png"},
@@ -21,8 +21,8 @@
       {"name": "Status Dot Values", "path": "img/status_dot_values.png"}
     ],
     "logos": {
-      "small": "img/logo.jpg",
-      "large": "img/logo.jpg"
+      "small": "img/logo.png",
+      "large": "img/logo.png"
     }
   },
 

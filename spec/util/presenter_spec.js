@@ -20,13 +20,13 @@ describe('Presenter', () => {
 
   describe('call', () => {
     it('sets the tooltip for each dot', () => {
-      subject.call([dot])
+      subject.call({hasData: true, dots: [dot]})
       expect(dot.tooltip).toEqual('n<br>custom')
     })
 
     describe('when there are no thresholds', () => {
       it('assigns the default color', () => {
-        subject.call([dot])
+        subject.call({hasData: true, dots: [dot]})
         expect(dot.color).toEqual('default')
       })
     })
@@ -34,7 +34,7 @@ describe('Presenter', () => {
     describe('when the thresholds are too high', () => {
       it('assigns the default color', () => {
         panel.thresholds.push({ value: '99.6', color: 'color' })
-        subject.call([dot])
+        subject.call({hasData: true, dots: [dot]})
         expect(dot.color).toEqual('default')
       })
     })
@@ -42,7 +42,7 @@ describe('Presenter', () => {
     describe('when a threshold value is reached', () => {
       it('assigns the threshold color', () => {
         panel.thresholds.push({ value: '99', color: 'color' })
-        subject.call([dot])
+        subject.call({hasData: true, dots: [dot]})
         expect(dot.color).toEqual('color')
       })
     })
@@ -52,7 +52,7 @@ describe('Presenter', () => {
         panel.thresholds.push({ value: '-99', color: 'color1' })
         panel.thresholds.push({ value: '-79', color: 'color3' })
         panel.thresholds.push({ value: '-89', color: 'color2' })
-        subject.call([dot])
+        subject.call({hasData: true, dots: [dot]})
         expect(dot.color).toEqual('color3')
       })
     })

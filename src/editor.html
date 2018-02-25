@@ -18,6 +18,15 @@
         <div class="dropdown width-10" ng-model="ctrl.panel.format" dropdown-typeahead2="ctrl.unitFormats" dropdown-typeahead-on-select="ctrl.onEditorSetFormat($subItem)">
 			</ul>
 		</div>
+
+		<div class="gf-form">
+			<label class="gf-form-label width-10">Show value in dot</label>
+			<div class="gf-form-switch max-width-6">
+				<input id="check566775" class="ng-pristine ng-untouched ng-valid ng-empty" ng-model="ctrl.panel.showValueInDot" ng-change="ctrl.render()" type="checkbox"/>
+				<label for="check566775" data-on="Yes" data-off="No"></label>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="section gf-form-group">

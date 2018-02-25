@@ -27,7 +27,12 @@ var Builder = exports.Builder = function () {
     value: function call() {
       var seriesList = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
-      return seriesList.map(this._eval, this);
+      var dots = seriesList.map(this._eval, this);
+      var dotsObject = {
+        hasData: dots.length !== 0,
+        dots: dots
+      };
+      return dotsObject;
     }
   }, {
     key: '_eval',

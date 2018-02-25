@@ -6,7 +6,12 @@ export class Builder {
   }
 
   call (seriesList = []) {
-    return seriesList.map(this._eval, this)
+    var dots = seriesList.map(this._eval, this)
+    var dotsObject = {
+      hasData: (dots.length !== 0),
+      dots: dots
+    }
+    return dotsObject
   }
 
   _eval (series) {

@@ -25,26 +25,46 @@ var Presenter = exports.Presenter = function () {
 
   _createClass(Presenter, [{
     key: 'call',
-    value: function call(dots) {
+    value: function call(dotsObject) {
       var _this = this;
 
-      dots.forEach(function (dot) {
-        return dot.color = _this._color(dot.colorValue);
-      });
-      dots.forEach(function (dot) {
-        return dot.textColor = _this._textColor(dot.colorValue);
-      });
-      dots.forEach(function (dot) {
-        return dot.tooltip = _this._tooltip(dot);
-      });
-      dots.forEach(function (dot) {
-        return dot.title = _this._title(dot);
-      });
+      if (dotsObject.hasData) {
+        var dots = dotsObject.dots;
+        dots.forEach(function (dot) {
+          return dot.color = _this._color(dot.colorValue);
+        });
+        dots.forEach(function (dot) {
+          return dot.textColor = _this._textColor(dot.colorValue);
+        });
+        dots.forEach(function (dot) {
+          return dot.tooltip = _this._tooltip(dot);
+        });
+        dots.forEach(function (dot) {
+          return dot.titleInDot = _this._titleInDot(dot);
+        });
+        dots.forEach(function (dot) {
+          return dot.valueInDot = _this._valueInDot(dot);
+        });
+      } else {
+        dotsObject.hasData = true;
+        dotsObject.dots = [{
+          color: this.panel.defaultColor,
+          textColor: this.panel.defaultTextColor,
+          tooltip: 'no data received',
+          title: 'no',
+          formattedValue: 'value'
+        }];
+      }
     }
   }, {
-    key: '_title',
-    value: function _title(dot) {
-      return dot.displayValue;
+    key: '_valueInDot',
+    value: function _valueInDot(dot) {
+      return this.panel.showValueInDot ? this._format(dot.displayValue) : '';
+    }
+  }, {
+    key: '_titleInDot',
+    value: function _titleInDot(dot) {
+      return this.panel.showValueInDot ? dot.name : '';
     }
   }, {
     key: '_tooltip',

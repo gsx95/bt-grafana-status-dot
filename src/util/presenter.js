@@ -6,15 +6,32 @@ export class Presenter {
     this.kbn = kbn
   }
 
-  call (dots) {
-    dots.forEach(dot => (dot.color = this._color(dot.colorValue)))
-    dots.forEach(dot => (dot.textColor = this._textColor(dot.colorValue)))
-    dots.forEach(dot => (dot.tooltip = this._tooltip(dot)))
-    dots.forEach(dot => (dot.title = this._title(dot)))
+  call (dotsObject) {
+    if (dotsObject.hasData) {
+      var dots = dotsObject.dots
+      dots.forEach(dot => (dot.color = this._color(dot.colorValue)))
+      dots.forEach(dot => (dot.textColor = this._textColor(dot.colorValue)))
+      dots.forEach(dot => (dot.tooltip = this._tooltip(dot)))
+      dots.forEach(dot => (dot.titleInDot = this._titleInDot(dot)))
+      dots.forEach(dot => (dot.valueInDot = this._valueInDot(dot)))
+    } else {
+      dotsObject.hasData = true
+      dotsObject.dots = [{
+        color: this.panel.defaultColor,
+        textColor: this.panel.defaultTextColor,
+        tooltip: 'no data received',
+        title: 'no',
+        formattedValue: 'value'
+      }]
+    }
   }
 
-  _title (dot) {
-    return dot.displayValue
+  _valueInDot (dot) {
+    return this.panel.showValueInDot ? this._format(dot.displayValue) : ''
+  }
+
+  _titleInDot (dot) {
+    return this.panel.showValueInDot ? dot.name : ''
   }
 
   _tooltip (dot) {

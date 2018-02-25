@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 
     exec: {
       jasmine: {
-        cmd: 'node_modules/jasmine/bin/jasmine.js'
+        cmd: 'node node_modules/jasmine/bin/jasmine.js'
       }
     }
   })

@@ -18,10 +18,16 @@ describe('Builder', () => {
       ]
 
       let expected = {
-        name: 'a', scratchPad: 2, displayValue: 2, colorValue: 3
+        hasData: true,
+        dots: [{
+          name: 'a',
+          scratchPad: 2,
+          displayValue: 2,
+          colorValue: 3
+        }]
       }
 
-      expect(subject.call(seriesList)).toEqual([expected])
+      expect(subject.call(seriesList)).toEqual(expected)
     })
   })
 })

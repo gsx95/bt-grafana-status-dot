@@ -1,19 +1,21 @@
 import _ from 'lodash'
 import kbn from 'app/core/utils/kbn'
-import {MetricsPanelCtrl} from 'app/plugins/sdk'
-import {Builder} from './util/builder'
-import {Presenter} from './util/presenter'
-import {Linker} from './util/linker'
-import {Styler} from './util/styler'
+import { MetricsPanelCtrl } from 'app/plugins/sdk'
+import { Builder } from './util/builder'
+import { Presenter } from './util/presenter'
+import { Linker } from './util/linker'
+import { Styler } from './util/styler'
 
 const panelDefaults = {
   radius: '20px',
   defaultColor: 'rgb(117, 117, 117)',
+  defaultTextColor: 'rgb(0, 0, 0)',
   thresholds: [],
   linkIndex: '0',
   linkVars: [],
   format: 'none',
   decimals: 2,
+  showValueInDot: false,
   mathScratchPad: 'data = size(data)[1] == 0 ? [NaN] : data',
   mathDisplayValue: 'data[end]',
   mathColorValue: 'data[end]'
@@ -27,6 +29,7 @@ export class PanelCtrl extends MetricsPanelCtrl {
     this.events.on('init-edit-mode', this.onInitEditMode.bind(this))
     this.events.on('data-received', this.onDataReceived.bind(this))
     this.events.on('render', this.onRender.bind(this))
+    this.events.on('data-snapshot-load', this.onDataSnapshotLoad.bind(this))
 
     this.builder = new Builder(this.panel)
     this.presenter = new Presenter(this.panel, kbn)
@@ -47,10 +50,15 @@ export class PanelCtrl extends MetricsPanelCtrl {
   }
 
   onRender () {
-    this.dots = this.builder.call(this.seriesList)
-    this.presenter.call(this.dots)
+    var dotsObject = this.builder.call(this.seriesList)
+    this.presenter.call(dotsObject)
+    this.dots = dotsObject.dots
     this.linker.call(this.dots)
     this.styler.call(this.dots)
+  }
+
+  onDataSnapshotLoad (snapshotData) {
+    this.onDataReceived(snapshotData)
   }
 
   onEditorSetFormat (subitem) {
