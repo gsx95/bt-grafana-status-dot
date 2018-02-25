@@ -38,9 +38,9 @@ export class PanelCtrl extends MetricsPanelCtrl {
   }
 
   onInitEditMode () {
-    this.addEditorTab('Options', 'public/plugins/btplc-status-dot-panel/editor.html')
-    this.addEditorTab('Values', 'public/plugins/btplc-status-dot-panel/values.html')
-    this.addEditorTab('Links', 'public/plugins/btplc-status-dot-panel/links.html')
+    this.addEditorTab('Options', 'public/plugins/gsx-dot-plus-panel/editor.html')
+    this.addEditorTab('Values', 'public/plugins/gsx-dot-plus-panel/values.html')
+    this.addEditorTab('Links', 'public/plugins/gsx-dot-plus-panel/links.html')
     this.unitFormats = kbn.getUnitFormats()
   }
 

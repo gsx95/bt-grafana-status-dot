@@ -1,7 +1,7 @@
 {
   "type": "panel",
-  "name": "Status Dot Plus",
-  "id": "gsx95-dot-plus-panel",
+  "name": "Dot Plus",
+  "id": "gsx-dot-plus-panel",
 
   "info": {
     "version": "0.2.3",
@@ -16,9 +16,9 @@
       {"name": "Project Site", "url": "https://github.com/gsx95/gsx-dot-plus-panel"}
     ],
     "screenshots": [
-      {"name": "Status Dot", "path": "img/status_dot.png"},
-      {"name": "Status Dot Options", "path": "img/status_dot_options.png"},
-      {"name": "Status Dot Values", "path": "img/status_dot_values.png"}
+      {"name": "Dot Plus", "path": "img/status_dot.png"},
+      {"name": "Dot Plus Options", "path": "img/status_dot_options.png"},
+      {"name": "Dot Plus Values", "path": "img/status_dot_values.png"}
     ],
     "logos": {
       "small": "img/logo.png",
